@@ -1,0 +1,38 @@
+name: EventPlanna frontend verify
+
+# Trigger on Pull Requests to main
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+        #Checks the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+        #Setup Node.js (Matching your .nvmrc)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm' # Caches node_modules for faster builds
+
+        # Instals Dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+        # Lint Check (Fails if code style is bad)
+      - name: Lint Code
+        run: npm run lint
+        
+        #Type Check 
+      - name: TypeScript Check
+        run: npx tsc --noEmit
+
+        #Build Test (Ensures the app actually compiles)
+      - name: Build App
+        run: npm run build
