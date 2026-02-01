@@ -58,8 +58,10 @@
 	--card-foreground: oklch(0.145 0 0);
 	--popover: oklch(1 0 0);
 	--popover-foreground: oklch(0.145 0 0);
-	--primary: oklch(0.205 0 0);
+	--primary: #667EEA;
 	--primary-foreground: oklch(0.985 0 0);
+	--primary-gradient: linear-gradient(313.25deg, #764BA2 -67.74%, #667EEA 111.07%);
+	--primary-solid: #667EEA;
 	--brand: oklch(0.7786 0.1332 193.54);
 	--brand-foreground: oklch(0.985 0 0);
 	--secondary: oklch(0.97 0 0);
@@ -94,8 +96,8 @@
 	--card-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.205 0 0);
 	--popover-foreground: oklch(0.985 0 0);
-	--primary: oklch(0.922 0 0);
-	--primary-foreground: oklch(0.205 0 0);
+	--primary: #667EEA;
+	--primary-foreground: oklch(0.985 0 0);
 	--brand: oklch(0.7786 0.1332 193.54);
 	--brand-foreground: oklch(0.205 0 0);
 	--secondary: oklch(0.269 0 0);
@@ -135,5 +137,69 @@
 	[role="button"],
 	button {
 		cursor: pointer;
+	}
+}
+
+@layer utilities {
+	/* Gradient Background Utilities */
+	.bg-primary-gradient {
+		background: var(--primary-gradient);
+	}
+
+	/* Gradient Text Utilities */
+	.text-primary-gradient {
+		background: var(--primary-gradient);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
+	}
+
+	/* Gradient Border Utilities */
+	.border-primary-gradient {
+		position: relative;
+		background: var(--background);
+		border: 2px solid transparent;
+		background-clip: padding-box;
+	}
+
+	.border-primary-gradient::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		margin: -2px;
+		border-radius: inherit;
+		background: var(--primary-gradient);
+	}
+
+	/* Gradient Border with different widths */
+	.border-primary-gradient-1 {
+		border-width: 1px;
+	}
+
+	.border-primary-gradient-1::before {
+		margin: -1px;
+	}
+
+	.border-primary-gradient-4 {
+		border-width: 4px;
+	}
+
+	.border-primary-gradient-4::before {
+		margin: -4px;
+	}
+
+	/* Hover variants */
+	.hover\:bg-primary-gradient:hover {
+		background: var(--primary-gradient);
+	}
+
+	.hover\:text-primary-gradient:hover {
+		background: var(--primary-gradient);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: transparent;
 	}
 }
