@@ -3,15 +3,12 @@ name: Deploy Frontend to Azure
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'myeventplanna/frontend/**' # Only runs when frontend changes
+
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./myeventplanna/frontend
+   
 
     steps:
       - uses: actions/checkout@v4
